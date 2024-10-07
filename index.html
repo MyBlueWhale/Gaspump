@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task ZGGY Coin Rewards</title>
+    <link rel="icon" type="image/x-webp" href="l.png">
+    
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-image: url("port21.webp");
+            color: #ffffff;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .form-container, .task-list {
+            width: 100%;
+            max-width: 800px;
+            background-image: url("port3.webp");
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+            text-align: center;
+            display: none;
+        }
+        .task {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 20px 0;
+            border-bottom: 0px solid #cccccc;
+        }
+        .task:last-child {
+            border-bottom: none;
+        }
+        .task-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .task-description {
+            flex-grow: 1;
+            margin-right: 10px;
+            text-align: left;
+            color: #ffffff;
+        }
+        .additional-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .additional-buttons button {
+            width: 48%;
+        
+        }
+        button {
+            background-color: #005726f2;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 120px;
+        }
+        button:disabled {
+            background-color: #fff691c2;
+            cursor: not-allowed;
+        }
+        .verification {
+            font-size: 0.9em;
+            color: #666;
+            text-align: center;
+            margin-top: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .loading-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            color: #fff;
+            font-size: 24px;
+            z-index: 9999;
+        }
+        .hidden {
+            display: none;
+        }
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        #telegram-link {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+        #telegram-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #0088cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        #address-error {
+            color: red;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .form-container, .task-list {
+                max-width: 90%;
+                padding: 15px;
+            }
+            .task-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .task-description {
+                margin-right: 0;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            button {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            .task {
+                padding: 15px 0;
+            }
+            .task-description {
+                font-size: 14px;
+            }
+            button {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen" id="loading-screen">
+        ⛽ GASPUMP 💯
+    </div>
+    <div class="center-content">
+        <h1>GASPUMP Tasks, Earn Rewards $MBW!</h1>
+        <div class="form-container" id="form-container">
+            <img src="l.png" alt="Image" style="width: 100%; max-width: 500px; margin-bottom: 20px;">
+            <input type="text" id="address-input" placeholder="Enter your address">
+            <div id="address-error"></div>
+            <button onclick="registerAddress()">Connect</button>
+
+            <div class="additional-buttons">
+                <button onclick="additionalAction1()" >🐳Play My Whale🫳 </button>
+                <button onclick="additionalAction2()">Register on the whitelist ⚪</button>
+
+        </div>
+    </div>
+    <div class="task-list" id="task-list">
+        <div class="task">
+            <div class="task-content">
+                <span class="task-description">Retweet #️⃣</span>
+                <button onclick="startTask(0, 'https://x.com/gaspump_tv/status/1842917775985279272')">Start</button>
+            </div>
+            <span class="verification" id="verification0"></span>
+        </div>
+        <div class="task">
+            <div class="task-content">
+                <span class="task-description">I like X👍</span>
+                <button onclick="startTask(1, 'https://x.com/gaspump_tv/status/1842288845351698695')">Start</button>
+            </div>
+            <span class="verification" id="verification1"></span>
+        </div>
+        <div class="task">
+            <div class="task-content">
+                <span class="task-description">Comment X 📩</span>
+                <button onclick="startTask(2, 'https://x.com/gaspump_tv/status/1842288845351698695')">Start</button>
+            </div>
+            <span class="verification" id="verification2"></span>
+        </div>
+        <div class="task">
+            <div class="task-content">
+                <span class="task-description">Telegram Reaction And comment 💙</span>
+                <button onclick="startTask(3, 'https://t.me/gaspump_tv/2603')">Start</button>
+            </div>
+            <span class="verification" id="verification3"></span>
+        </div>
+        <div class="task">
+            <div class="task-content">
+                <span class="task-description">follow the Top influencer in Ton🔥</span>
+                <button onclick="startTask(4, 'https://x.com/TONmemelandia')">Start</button>
+            </div>
+            <span class="verification" id="verification4"></span>
+        </div>
+    </div>
+    <div id="telegram-link">
+        <p>To claim your $MBW send a screenshot of all completed tasks, from your registered Telegram profile and your Hold wallet."</p>
+        <a id="telegram-button" href="https://t.me/+gdllcZp5Kfs5YjMx" target="_blank">Claim on Telegram</a>
+    </div>
+
+    <audio id="taskSound" src="sound.mp3"></audio>
+
+    <script>
+        const whitelist = ['UQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJKZ',
+        'UQBpux3TbvSum35wk2B6f3yjXg1D6H12_1Iws-4JcxpygM_g',
+        'UQD0qGv3NBKfHn29a4-0bw45vsjKB2MI695HDT4rcDhpxE7p',
+        'UQDLdufyCCjMkgd_lX2LLqBfSq-k9rDnthjAceztsjftOE7q',
+        'UQAaofFKi74MrhpeLToU2dfyRarfsgR6y3mQbLU0BfN_QpOd',
+        'UQDAwThZP-hJ2QhU_oTUvACZgM6T4hGnj4LrK6fpfu5M9jet',
+        'UQD3mGgZxllkb3qaPuTfou0uc1TmKIncuKKIhGvtKPGOvuRC',
+        'UQBvVMt0-jF5hK-xveHIfIhL2lGszewUaYWrAyd6xbirI02-',
+        'UQCrEHuo5hdyS8Adn5cS1fcUd_pQLrJ3RGeqBZVNI7L2azxF',
+        'EQDK7cw8aYpHFYRknS0Tr5yf-tPqZ4XBRERD5QgBkVzWEK5a',
+        'UQD9T55Sq_yz8NAC9scIzjN9OjhMNzXTQOnOpVB9kTmNd1T7',
+        'UQA2kbwjomMwkERqhbmkVLTmASrsOWOI-LqPaQ-h3aL1IZE3',
+        'UQC-Cqd2VzoKxhyBUnKohxWiLvgOAszu-lnutW5Gl66fTclk',
+        'UQCpG8kuQuz6tHyal6XeaIr1QpSvwHNB6uRbdo-khGf4w89Y',
+        'UQAovLICjxgReHYaZRnTVpJ4KgP8zbaknT_xyUHSIHVlKrsk',
+        'UQAsWQ_K_Di0vCwPzKB00YtcDVGp_VfHGibtMtvo2xv0gOxE',
+        'UQAODxtI-TE-_0SqY3jzzwXQ-IuC7PaaMlqmlQKsHc-SkN_I',
+        'UQCoMvQdSSzqzIpzVyiQRpm5Hlv8wgIm6NyiEH-i1lwhVZM2',
+        'UQCoMvQdSSzqzIpzVyiQRpm5Hlv8wgIm6NyiEH-i1lwhVZM2',
+        'UQCIpbucvKzp3r1bY0jSHmsmDvqQTEnGt1Ru67tdP2vDelf7',
+        'UQBQLeggG9CK44Oi4jfJD-tFJqpjx-4cnoNHHLQOmzL7jXgq',
+        'UQDBxhxY6Rm-Px6bF34G8InnysezX3U_9nkvuQddUyiznN3l',
+        'UQCxVPL8Pf9FHhRhzPrl9FQU5-PzzZILSoYPMtc9yfH-hUIA',
+        'UQDHCY-mnr05-gdf_ca0QjeKAJp7v7LJHh5FMJU8Bf_2vB_8',
+        'EQDndOZzWL6N3hU_phlOuPADmyNNIH0F0NJ-Ek1XwmJDeIhz',
+        'UQAFLXQFKbF9bPa6ijwAJPTss5yWPXh_7nEd7Iif54Jruucw',
+        'UQD5k_TqZm9mWqZWR6LpW_Nzi_VhTco-3CQXnZK2BeDKHlC0',
+        'UQAghHx4c1qhxgu9tzZ5-yKgUBKt6yOS1wO3wuX1T7HUXon6',
+        'UQB4Al7U-CuJTiM0nD0I5WCh_FK1sHGqqol4swh4936kdrEz',
+        'UQBQ70rSjiNlYLf-Q0uYAV-mGzbEHNNcycATvm1YUjUZEXqR',
+        'UQCOdtBGP9V16IzpqSxezTD9ucOMjLPfMye6F9jSd_I6Ci_6',
+        'UQDKGOwXWx8DDhSDWAxnL8L1LBp2Uem_Ucsq1oiZfu0u48U9',
+        'EQB17qwbXVSikGFnTtpFC5nYnz7uGXruUCK_oEN46yQsRlnD',
+        'UQBx7pQUZguxC9oM-ZsktUs87mlmrN31oBGz7_G00ADL95c5',
+        'UQBHxDl-NLRLtSQjdVo0KMcXGH4wxqsSKNppqrnuEw5Lhrwj',
+        'UQCyg1M__IYzecm43CKInr0gC1ihvbVYlwecAarWPbD7Eu70',
+        'UQCTksuxysIgVKasEShGHtYEgH099RxFbQ6c0exlkcwwwTeS',
+        'UQDX79AzTntUkeOE7XURvhOSk5ogxsduhE2ApKkVepKDvYia',
+        'UQByGb5gEaS7ecrbWZBej7T9bI7wKmPt3m-3-2f6A9-rQ0NL',
+        'UQDiEdEY2QZvae4ZMMEWWvAxUq4BHbPUWOZK3kulWowweE1s',
+        'UQCppTAP3imF51k4XU9-5fktpQnUPbjeeRT6X6yw206c1RVl',
+        'UQCGOxD8ny6CSYHpmOPGJ8xAKnq1HUhpNI05FqE8d_xJHYfU',
+        'UQC7KH5heB-op5X2wUDJGJxzkC04OP2mF5Jx2NpJOH8FdX9p',
+        'UQAeME_QnD-MQdWsN1fmaRwrIS0L7gmCt4Y1VU0zUCeuyEBp',
+        'UQDWYQ3VhKfKuc8cq1Ya2nrjJ4_yUVhKMnS5ZbqPPl65-fQK',
+        'UQAuwfsHVtCqpE3d_56RPwh0s4r1JoLVRMK8Pf9JWd0FKtoC',
+        'UQAqePhgCmmnbd8-fD6z4azGB7VLtmnmJp0ZsVR8KT1OSE3s',
+        'UQBD8jH46NSLcORwbL4ujrO6YUSRZJcwNgHzEcuwRcSWFM3B',
+        'UQDoIeXhBWIA5TU3Bhi4TUVOV19gEIvWNxtwHe8hZMlsDB44',
+        'UQC3IW58SihBryJGKoK8n9bxmHD3zzcGhXppbolbxGAvlNH7',]; 
+        let tasks = [
+            { points: 10, completed: false, timer: null, url: 'https://x.com/gaspump_tv/status/1842917775985279272' },
+            { points: 20, completed: false, timer: null, url: 'https://x.com/gaspump_tv/status/1842288845351698695' },
+            { points: 30, completed: false, timer: null, url: 'https://x.com/gaspump_tv/status/1842288845351698695' },
+            { points: 40, completed: false, timer: null, url: 'https://t.me/gaspump_tv/2603' },
+            { points: 50, completed: false, timer: null, url: 'https://x.com/TONmemelandia' }
+        ];
+        let currentAddress = '';
+
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('loading-screen').classList.add('hidden');
+                document.getElementById('form-container').style.display = 'block';
+            }, 2000); // Duration of loading animation
+        }
+
+        function registerAddress() {
+            const address = document.getElementById('address-input').value.trim();
+            if (whitelist.includes(address)) {
+                currentAddress = address;
+                document.getElementById('form-container').style.display = 'none';
+                document.getElementById('task-list').style.display = 'block';
+            } else {
+                document.getElementById('address-error').textContent = 'Does not exist in the white list';
+            }
+        }
+
+        function startTask(index, url) {
+            if (!currentAddress) {
+                alert('Please register your address first');
+                return;
+            }
+            if (!tasks[index].completed && !tasks[index].timer) {
+                window.open(url, '_blank');
+                const button = document.querySelectorAll('.task-list button')[index];
+                button.innerText = 'Check';
+                button.onclick = () => checkTask(index);
+            }
+        }
+
+        function checkTask(index) {
+            if (!tasks[index].completed && !tasks[index].timer) {
+                window.open(tasks[index].url, '_blank'); //
+                tasks[index].timer = setTimeout(() => completeTask(index), 15 * 1000); ////
+                document.getElementById(`verification${index}`).textContent = 'verification...';
+                disableButton(index);
+            }
+        }
+
+        function completeTask(index) {
+            if (!tasks[index].completed) {
+                tasks[index].completed = true;
+                document.querySelectorAll('.task-list button')[index].innerText = 'Completed';
+                document.getElementById(`verification${index}`).textContent = 'Verified!';
+                playSound();
+                checkAllTasksCompleted();
+            }
+        }
+
+        function disableButton(index) {
+            document.querySelectorAll('.task-list button')[index].disabled = true;
+        }
+
+        function playSound() {
+            document.getElementById('taskSound').play();
+        }
+
+        function additionalAction1() {
+            window.location.href = "https://mybluewhale.github.io/Game/"; 
+        }
+        function additionalAction2() {
+            window.open("https://docs.google.com/forms/d/e/1FAIpQLSfrJk-OBWqc29n1R-6mooXvM7G5uxlk7WiFUbjnZP3G3P4bwQ/viewform?usp=sf_link");
+        }
+
+
+        function checkAllTasksCompleted() {
+            if (tasks.every(task => task.completed)) {
+                document.getElementById('telegram-link').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+
+</html>
